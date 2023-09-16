@@ -25,7 +25,7 @@ export class PredefinedMessages {
   public static About: TextObject = {
     text: `> [SYSTEM]: Retrieving DeepDiveDev's profile...
 >
-> DeepDiveDev, known in the real world as [Your Name], is a 23-year-old full-stack developer hailing from the historic city of Zagreb, Croatia. His journey into the abyss of code began with a passionate affair with React. As he delved deeper, his expertise expanded, embracing a myriad of technologies that now define the digital landscape.
+> DeepDiveDev, known in the real world as Kristijan Ribarić, is a 23-year-old full-stack developer hailing from the historic city of Zagreb, Croatia. His journey into the abyss of code began with a passionate affair with React. As he delved deeper, his expertise expanded, embracing a myriad of technologies that now define the digital landscape.
 >
 > DeepDiveDev's mantra: Dive deep, explore uncharted depths, emerge with unparalleled solutions. This philosophy is evident in every line of code he crafts.
 >
