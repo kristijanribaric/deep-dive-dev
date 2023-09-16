@@ -53,10 +53,20 @@ main{
     padding: 8rem;
 }
 
+.prompt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 .cursor-wrapper {
 
-    display: inline;
+    display: inline-flex;
     position: relative;
+    width: 2rem;
+    align-items: end;
+    justify-content: start;
+    padding-top: 2px;
+
 }
 
 .cursor {
@@ -71,8 +81,8 @@ main{
             1.4vmin
     );
     height: max(
-            0.7rem,
-            1.6vmin
+            0.8rem,
+            1.4vmin
     );
 }
 
@@ -85,7 +95,7 @@ main{
     opacity: 0;
     width: 100%;
     height: 100%;
-    top: 2px;
+    /*top: 2px;*/
     left: 0;
     right: 0;
 }

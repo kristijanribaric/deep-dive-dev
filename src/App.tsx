@@ -85,7 +85,7 @@ export default function App() {
   const [isTyping, setIsTyping] = useState(true);
 
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+    async (e: KeyboardEvent) => {
       if (isTyping) {
         return;
       }
@@ -93,7 +93,7 @@ export default function App() {
       // if key is backspace, delete last character from stat
       if (e.key === 'Backspace') {
         setContent(prevState => prevState.slice(0, -1));
-        audioKeys[2].play();
+        await audioKeys[2].play();
         return;
       }
 
@@ -105,7 +105,7 @@ export default function App() {
         };
         setWriting(prevState => [...prevState, contentObj]);
         handleLinkClick(content);
-        audioKeys[3].play();
+        await audioKeys[3].play();
         setContent('');
         return;
       }
@@ -113,7 +113,7 @@ export default function App() {
       // Check if the key pressed is a letter, number, symbol, or dot
       if (e.key.match(/^[a-zA-Z0-9-_.!@#$%^&*()+=,<>?/\\{}[\]~` ]$/) && content.length < 50) {
         setContent(prevState => prevState + e.key);
-        typeSound();
+        await typeSound();
         return;
       }
     },
@@ -160,7 +160,7 @@ export default function App() {
                     />
                     {isTyping && <span className="cursor"></span>}
                     {!isTyping && (
-                      <div>
+                      <div className="prompt">
                         <span>&gt; {content}</span>
                         <div className="cursor-wrapper">
                           <input disabled={isTyping} className="prompt-input" value={content} onChange={e => setContent(e.target.value)} />
