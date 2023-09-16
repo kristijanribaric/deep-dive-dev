@@ -1,0 +1,505 @@
+
+/*@import url("https://fonts.googleapis.com/css?family=VT323&display=swap");*/
+/*@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap");*/
+/*@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");*/
+
+/*!*********** VARIABLES *************!*/
+
+/*:root {*/
+/*    --green-color: #5bf870;*/
+/*    --green-bg: #05321e;*/
+/*    --red-color: #c0100a;*/
+/*    --red-bg: #1b0302;*/
+/*    --blue-color: #a5a5ff;*/
+/*    --blue-bg: #4242e7;*/
+/*    --off: #050505;*/
+/*    --dark: #111;*/
+/*    --term: "> ";*/
+/*}*/
+
+
+/*.theme-green {*/
+/*    --color: var(--green-color);*/
+/*    --bg: var(--green-bg);*/
+/*}*/
+
+
+/*!*********** GENERIC STUFF *************!*/
+
+/*html {*/
+/*    font-size: 12px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+/**,*/
+/**:before,*/
+/**:after {*/
+/*    box-sizing: inherit;*/
+/*}*/
+
+/*body {*/
+/*    background: black;*/
+/*    margin: 0;*/
+/*    overflow: hidden;*/
+/*    font-family: sans-serif;*/
+/*}*/
+
+/*a {*/
+/*    outline: none;*/
+/*}*/
+/*!*********** INPUT / OUTPUT *************!*/
+
+/*main{*/
+/*    margin: 0 auto;*/
+/*    width: 100%;*/
+/*    max-width: 1200px;*/
+/*    padding: 8rem;*/
+/*}*/
+
+/*#prompt {*/
+/*    display: none;*/
+/*}*/
+/*[contenteditable] {*/
+/*    caret-color: transparent; !** This hides the default browser caret *!*/
+/*    outline: none;*/
+/*}*/
+
+
+/*.cursor-wrapper {*/
+
+/*    display: inline;*/
+/*    position: relative;*/
+/*}*/
+
+/*.cursor {*/
+/*    display: inline-block;*/
+/*    animation: cursor 1s infinite;*/
+/*    animation-timing-function: step-end;*/
+/*    margin-left: 0.2rem;*/
+/*    background: var(--color);*/
+/*    box-shadow: 0 0 5px #c8c8c8;*/
+/*    width:  max(*/
+/*            0.6rem,*/
+/*            1.4vmin*/
+/*    );*/
+/*    height: max(*/
+/*            0.7rem,*/
+/*            1.6vmin*/
+/*    );*/
+/*}*/
+
+/*.Typewriter {*/
+/*    display: inline;*/
+/*}*/
+
+/*.input1 {*/
+/*    !*display: inline;*!*/
+/*    !*position: relative;*!*/
+/*    !*top: 0;*!*/
+/*    !*left: 3px;*!*/
+/*    !*appearance: none;*!*/
+/*    !*background: transparent;*!*/
+/*    !*border: none;*!*/
+/*    !*text-transform: uppercase;*!*/
+/*    !*animation: textShadow 4s infinite;*!*/
+/*    !*color: var(--color);*!*/
+/*    !*font-size: max(*!*/
+/*    !*    1rem,*!*/
+/*    !*    2.2vmin*!*/
+/*    !*);*!*/
+/*    !*caret-color: transparent;*!*/
+/*    !*outline: none;*!*/
+/*    position: absolute;*/
+/*    opacity: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    top: 2px;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
+/*#hide {*/
+/*    position: absolute;*/
+/*    opacity: 0;*/
+/*}*/
+
+
+
+/*.typer {*/
+/*    word-break: break-all;*/
+/*}*/
+
+
+
+
+/*#monitor:not(.off) {*/
+/*    box-shadow: 0.6px 90px 110px -60px var(--bg); !* screen glow *!*/
+/*}*/
+/*#screen {*/
+/*    position: relative;*/
+/*    border: 30px solid transparent;*/
+/*    !*border-image-source: url(/img/bezel_gray.png);*!*/
+/*    border-image-slice: 30 fill;*/
+/*    border-image-outset: 0;*/
+/*    overflow: hidden;*/
+/*}*/
+/*!* The screen itself + border *!*/
+/*#crt,*/
+/*pre {*/
+/*    font-family: "VT323", monospace;*/
+/*}*/
+/*#crt {*/
+/*    min-width: 80ch; !* This makes 80 monospace characters fit on the screen *!*/
+/*    height: calc(80ch * 0.8);*/
+/*    font-size: max(*/
+/*            1rem,*/
+/*            2.2vmin*/
+/*    ); !* Scale the font-size relative to the minimum screen dimension *!*/
+/*    position: relative;*/
+/*    background: var(--bg);*/
+/*    background-image: radial-gradient(*/
+/*            ellipse,*/
+/*            var(--bg) 0%,*/
+/*            var(--off) 90%*/
+/*    );*/
+/*    animation: on 2s linear;*/
+/*    transition: all 0.5s;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*#crt:after {*/
+/*    content: " ";*/
+/*    opacity: 0;*/
+/*    background: #fff;*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    pointer-events: none;*/
+/*    z-index: 3;*/
+/*}*/
+/*#monitor.turn-off #crt:after {*/
+/*    animation: turnOff 0.4s ease-in-out;*/
+/*    !* animation-fill-mode: forwards; *!*/
+/*}*/
+
+/*#monitor:not(.off) #crt:before {*/
+/*    content: " ";*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    background: linear-gradient(*/
+/*            to bottom,*/
+/*            rgba(18, 16, 16, 0.1) 50%,*/
+/*            rgba(0, 0, 0, 0.25) 50%*/
+/*    );*/
+/*    background-size: 100% 8px;*/
+/*    z-index: 2;*/
+/*    pointer-events: none;*/
+/*    animation: fadeIn 2s;*/
+/*}*/
+
+/*!* Screen turned off *!*/
+/*#monitor.off #crt {*/
+/*    background: var(--off);*/
+/*}*/
+/*#monitor.off #crt:before {*/
+/*    background: none;*/
+/*}*/
+/*#monitor.off #crt * {*/
+/*    display: none !important;*/
+/*}*/
+
+/*body.fullscreen #crt {*/
+/*    font-size: 2.5rem;*/
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    z-index: 999;*/
+/*}*/
+
+/*.fullscreen {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.terminal {*/
+/*    position: relative;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    padding: 2rem;*/
+/*    overflow-y: auto;*/
+/*    overflow-x: hidden;*/
+/*    word-break: break-word;*/
+/*    text-transform: uppercase;*/
+/*    animation: textShadow 4s infinite;*/
+/*    white-space: pre-line;*/
+/*    scrollbar-width: thin;*/
+/*    scrollbar-color: var(--green-color) var(--green-bg);*/
+/*}*/
+
+
+/*!* Styling for the scrollbar track (the background of the scrollbar) *!*/
+/*.terminal::-webkit-scrollbar-track {*/
+/*    background-color: var(--green-bg); !* Darker background for contrast *!*/
+/*    border-radius: 10px; !* Rounded corners *!*/
+/*}*/
+
+/*.terminal::-webkit-scrollbar {*/
+/*    width: 10px; !* Width of the scrollbar *!*/
+/*}*/
+
+/*!* Styling for the scrollbar thumb (the draggable part of the scrollbar) *!*/
+/*.terminal::-webkit-scrollbar-thumb {*/
+/*    background-color: var(--green-color); !* Classic green to match the text *!*/
+/*    box-shadow: 0 0 5px #c8c8c8;*/
+/*    border-radius: 10px; !* Rounded corners *!*/
+/*    border: 2px solid transparent; !* Dark green border to separate it from the track *!*/
+/*}*/
+
+/*!* Hover effect for the scrollbar thumb *!*/
+/*.terminal::-webkit-scrollbar-thumb:hover {*/
+/*    background-color: #4ae860; !* Slightly different shade of green on hover *!*/
+/*}*/
+
+
+
+
+
+/*.terminal,*/
+/*.fullscreen {*/
+/*    color: var(--color);*/
+/*    text-shadow: 0 0 5px #c8c8c8;*/
+/*}*/
+
+/*::selection {*/
+/*    background: var(--color);*/
+/*    color: var(--bg);*/
+/*    text-shadow: none;*/
+/*}*/
+
+/*!* Scanline moving top to bottom over the screen *!*/
+/*.scanline {*/
+/*    width: 100%;*/
+/*    height: 100px;*/
+/*    z-index: 8;*/
+/*    background: linear-gradient(*/
+/*            0deg,*/
+/*            rgba(0, 0, 0, 0) 0%,*/
+/*            rgba(255, 255, 255, 0.2) 10%,*/
+/*            rgba(0, 0, 0, 0.1) 100%*/
+/*    );*/
+/*    opacity: 0.1;*/
+/*    position: absolute;*/
+/*    bottom: 100%;*/
+/*    pointer-events: none;*/
+/*    animation: scanline 10s linear infinite;*/
+/*}*/
+
+/*.helmet-icon {*/
+/*    filter: drop-shadow(0 0 4px #c8c8c8);*/
+/*}*/
+
+
+/*#monitor:not(.off) button:active,*/
+/*#monitor:not(.off) #themes button.active {*/
+/*    background-color: var(--color);*/
+/*    position: relative;*/
+/*}*/
+/*#monitor:not(.off) #themes button.active:before {*/
+/*    content: " ";*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    box-shadow: 0.6px 0px 25px -3px var(--color);*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+
+
+
+/*#fullscreen {*/
+/*    border: 0.25rem solid var(--dark);*/
+/*    padding: 1rem;*/
+/*    background-color: rgb(186, 189, 182);*/
+/*    transition: opacity 0.5s;*/
+/*    font-weight: bold;*/
+/*    line-height: 1rem;*/
+/*}*/
+
+/*body.fullscreen #fullscreen {*/
+/*    position: fixed;*/
+/*    top: 1rem;*/
+/*    right: 1rem;*/
+/*    z-index: 1001;*/
+/*    transform: rotate(180deg);*/
+/*    opacity: 0.5;*/
+/*}*/
+
+/*body.fullscreen #fullscreen:hover {*/
+/*    opacity: 1;*/
+/*}*/
+
+
+/*button[data-theme="green"] {*/
+/*    background: var(--green-bg);*/
+/*    border-color: var(--green-color);*/
+/*}*/
+
+
+/*!*********** RANDOM OTHER STUFF *************!*/
+
+/*.access-granted {*/
+/*    animation: flicker 2s infinite;*/
+/*    position: fixed;*/
+/*    text-align: center;*/
+/*    background: var(--bg);*/
+/*    border: 2px solid var(--color);*/
+/*    !*padding: 10px 30px;*!*/
+/*    left: 50%;*/
+/*    top: 40%;*/
+/*    transform: translateX(-50%);*/
+/*    z-index: 999;*/
+/*}*/
+
+/*.post-it {*/
+/*    transform: rotate(3deg);*/
+/*    line-height: 1;*/
+/*    text-align: center;*/
+/*    padding: 1rem;*/
+/*    border: 1px solid #e8e8e8;*/
+/*    font-family: "Permanent Marker", cursive;*/
+/*    font-size: 1rem;*/
+/*    color: #333;*/
+/*    border-bottom-right-radius: 40px 14px;*/
+/*    display: inline-block;*/
+/*    background: #ffff88;*/
+/*    background: linear-gradient(*/
+/*            135deg,*/
+/*            #ffff88 81%,*/
+/*            #ffff88 82%,*/
+/*            #ffff88 82%,*/
+/*            #ffffc6 100%*/
+/*    );*/
+/*    transition-property: left top transform;*/
+/*    transition-duration: 0.5s;*/
+/*    transition-timing-function: ease-in-out;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.post-it:hover {*/
+/*    border-bottom-left-radius: 20px 5px;*/
+/*    border-bottom-right-radius: 40px 28px;*/
+/*}*/
+/*.post-it.fly {*/
+/*    transform: translate(-5rem, 10rem) rotate(270deg);*/
+/*}*/
+
+/*!*********** SLIDER ********************!*/
+
+/*#slider {*/
+/*    display: none;*/
+/*}*/
+/*.switch {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    width: 60px;*/
+/*    height: 34px;*/
+/*}*/
+
+
+/*!* The slider *!*/
+/*.slider {*/
+/*    position: absolute;*/
+/*    cursor: pointer;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background-color: var(--bg);*/
+/*    -webkit-transition: 0.4s;*/
+/*    transition: 0.4s;*/
+/*}*/
+
+/*.slider:before {*/
+/*    position: absolute;*/
+/*    content: "O";*/
+/*    height: 26px;*/
+/*    width: 26px;*/
+/*    left: 4px;*/
+/*    bottom: 4px;*/
+/*    background-color: var(--color);*/
+/*    -webkit-transition: 0.4s;*/
+/*    transition: 0.4s;*/
+/*    display: grid;*/
+/*    place-items: center;*/
+/*}*/
+
+
+/*!*********** MEDIA QUERIES *************!*/
+
+/*!* For really small screens, only show fullscreen mode *!*/
+/*@media only screen and (max-width: 425px), (max-height: 425px) {*/
+/*    #crt {*/
+/*        position: fixed;*/
+/*        left: 0;*/
+/*        top: 0;*/
+/*        width: 100%;*/
+/*        height: 100%;*/
+/*    }*/
+
+/*    #controls {*/
+/*        display: none;*/
+/*    }*/
+/*    #slider {*/
+/*        display: initial;*/
+/*        position: fixed;*/
+/*        top: 50%;*/
+/*        right: 50%;*/
+/*        opacity: 1;*/
+/*        transition: top 1s ease-out, right 1s ease-out,*/
+/*        opacity 1s ease-out;*/
+/*        animation: glow 3s ease-in-out infinite;*/
+/*    }*/
+/*    #slider.on {*/
+/*        top: 10px;*/
+/*        right: 10px;*/
+/*        opacity: 0.2;*/
+/*        animation: none;*/
+/*    }*/
+/*}*/
+
+/*!* Some fixes for smaller screens *!*/
+/*@media only screen and (max-width: 768px) {*/
+/*    .post-it,*/
+/*    #themes,*/
+/*    #volume {*/
+/*        display: none;*/
+/*    }*/
+
+/*    #power {*/
+/*        width: 100%;*/
+/*        justify-content: space-around;*/
+/*    }*/
+/*}*/
+/*@media only screen and (min-width: 800px) {*/
+/*    #themes {*/
+/*        flex-direction: row;*/
+/*    }*/
+/*    .post-it {*/
+/*        font-size: 2rem;*/
+/*    }*/
+/*}*/
