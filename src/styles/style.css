@@ -19,6 +19,9 @@
 .theme-green {
     --color: var(--green-color);
     --bg: var(--green-bg);
+    max-width: 950px;
+    margin: 0 auto;
+
 }
 
 
@@ -89,12 +92,14 @@ main{
 
 #monitor:not(.off) {
     box-shadow: 0.6px 90px 110px -60px var(--bg); /* screen glow */
+    border-radius: 60px;
 }
 
 #screen {
     position: relative;
     border: 30px solid transparent;
     overflow: hidden;
+
 }
 /* The screen itself + border */
 #crt,
@@ -102,6 +107,7 @@ pre {
     font-family: "VT323", monospace;
 }
 #crt {
+    border-radius: 20px;
     min-width: 80ch; /* This makes 80 monospace characters fit on the screen */
     height: calc(80ch * 0.8);
     font-size: max(
@@ -230,6 +236,7 @@ body.fullscreen #crt {
 .fullscreen {
     color: var(--color);
     text-shadow: 0 0 5px #c8c8c8;
+    padding: 15px;
 }
 
 ::selection {
@@ -317,6 +324,7 @@ body.fullscreen #fullscreen:hover {
 /* For really small screens, only show fullscreen mode */
 @media only screen and (max-width: 425px), (max-height: 425px) {
     #crt {
+        border-radius: 0;
         position: fixed;
         left: 0;
         top: 0;

@@ -15,7 +15,9 @@ export default function App() {
 
   const handleLinkClick = (option: string) => {
     let newWindow: Window | null;
-    switch (option.trim()) {
+    switch (option.trim().toLowerCase()) {
+      case '':
+        break;
       case '1':
         setWriting(prevState => [...prevState, PredefinedMessages.About]);
         break;
