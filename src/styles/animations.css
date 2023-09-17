@@ -208,6 +208,30 @@
         filter: brightness(50);
     }
 }
+@keyframes turnOn {
+    0% {
+        background: #000;  /* Start from a black screen */
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+    }
+    10% {
+        background: #e0e0e0;  /* Quick bright flash */
+        -webkit-filter: brightness(5);
+        filter: brightness(5);
+    }
+    20% {
+        background: #333;  /* Dim phase */
+        -webkit-filter: brightness(2);
+        filter: brightness(2);
+    }
+    100% {
+        background: var(--bg);  /* Stabilize to the normal background */
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+    }
+}
+
+
 
 @keyframes glow {
     0% {

@@ -101,6 +101,7 @@ main{
 }
 
 #monitor:not(.off) {
+    transition: all 1500ms ease-in-out;
     box-shadow: 0.6px 90px 110px -60px var(--bg); /* screen glow */
     border-radius: 60px;
 }
@@ -117,6 +118,7 @@ pre {
     font-family: "VT323", monospace;
 }
 #crt {
+    transition: all 500ms ease-in-out;
     border-radius: 20px;
     min-width: 80ch; /* This makes 80 monospace characters fit on the screen */
     height: calc(80ch * 0.8);
@@ -137,6 +139,7 @@ pre {
 }
 
 #crt:after {
+    transition: all 500ms ease-in-out;
     content: " ";
     opacity: 0;
     background: #fff;
@@ -153,10 +156,15 @@ pre {
 }
 #monitor.turn-off #crt:after {
     animation: turnOff 0.4s ease-in-out;
-    /* animation-fill-mode: forwards; */
 }
 
+#monitor.turn-on #crt {
+    animation: turnOn 0.8s ease-in-out;
+}
+
+
 #monitor:not(.off) #crt:before {
+    transition: all 500ms ease-in-out;
     content: " ";
     display: block;
     position: absolute;
@@ -183,6 +191,7 @@ pre {
     background: none;
 }
 #monitor.off #crt * {
+    transition: all 500ms ease-in-out;
     display: none !important;
 }
 
@@ -275,10 +284,11 @@ body.fullscreen #crt {
 
 .helmet-icon {
     filter: drop-shadow(0 0 4px #c8c8c8);
+    width: 15rem;
 }
 
 .icon-center {
-    animation: flicker 2s infinite;
+    animation: fadeIn 2s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,21 +300,10 @@ body.fullscreen #crt {
     flex-direction: column;
 }
 
-#monitor:not(.off) button:active,
-#monitor:not(.off) #themes button.active {
-    background-color: var(--color);
-    position: relative;
+.flicker {
+    animation: flicker 2s infinite;
 }
-#monitor:not(.off) #themes button.active:before {
-    content: " ";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0.6px 0px 25px -3px var(--color);
-    left: 0;
-    top: 0;
-    border-radius: 50%;
-}
+
 
 #fullscreen {
     border: 0.25rem solid var(--dark);
@@ -328,10 +327,6 @@ body.fullscreen #fullscreen:hover {
     opacity: 1;
 }
 
-
-/*********** MEDIA QUERIES *************/
-
-/* For really small screens, only show fullscreen mode */
 @media only screen and (max-width: 425px), (max-height: 425px) {
     #crt {
         border-radius: 0;

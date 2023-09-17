@@ -8,9 +8,11 @@ import { typeSound, audioKeys } from './utils/sounds.ts';
 
 export default function App() {
   const [writing, setWriting] = useState<TextObject[]>([PredefinedMessages.Intro]);
-
-  const [showIcon, setShowIcon] = useState(true);
-
+  const [showIcon, setShowIcon] = useState(false);
+  const [content, setContent] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [monitorClass, setMonitorClass] = useState('off');
+  const [iconClass, setIconClass] = useState('icon-center');
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const handleLinkClick = (option: string) => {
@@ -63,6 +65,9 @@ export default function App() {
           setWriting(prevState => [...prevState, PredefinedMessages.SuccessfulRedirect]);
         }
         break;
+      case '5':
+        setMonitorClass('off turn-off');
+        break;
       case 'help':
         setWriting(prevState => [...prevState, PredefinedMessages.HelpIntro]);
         break;
@@ -71,18 +76,6 @@ export default function App() {
         break;
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowIcon(false);
-    }, 4000); // Hide after 3 seconds
-
-    return () => clearTimeout(timer); // Clear the timer if the component is unmounted
-  }, []);
-
-  const [content, setContent] = useState('');
-
-  const [isTyping, setIsTyping] = useState(true);
 
   const handleKeyDown = useCallback(
     async (e: KeyboardEvent) => {
@@ -130,45 +123,67 @@ export default function App() {
     };
   }, [handleKeyDown]);
 
+  useEffect(() => {
+    const timer1 = setTimeout(() => setMonitorClass('turn-on off'), 1000);
+    const timer2 = setTimeout(() => setMonitorClass('turn-on'), 1500);
+    const timer3 = setTimeout(() => setShowIcon(true), 1800);
+    const timer4 = setTimeout(() => setIconClass('icon-center flicker'), 2600);
+    const timer5 = setTimeout(() => {
+      setShowIcon(false);
+      setMonitorClass('');
+    }, 6800);
+
+    // Clear all timers if the component is unmounted
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      clearTimeout(timer5);
+    };
+  }, []);
+
   return (
     <>
       <div className="theme-green">
-        <div id="monitor">
+        <div id="monitor" className={monitorClass}>
           <div id="screen">
             <div id="crt">
               <div className="scanline"></div>
               <div className="terminal">
                 {showIcon ? (
-                  <div className="icon-center">
+                  <div className={iconClass}>
                     <DivingHelmetIcon />
                     <p>DeepDiveDev BIOS v1.0.3 Booting...</p>
                   </div>
                 ) : (
-                  <>
-                    <Typewriter
-                      typingDelay={30}
-                      texts={writing}
-                      onTypingStart={() => setIsTyping(true)}
-                      onTypingEnd={() => setIsTyping(false)}
-                      onLetterTyped={() => {
-                        setTimeout(() => {
-                          if (bottomRef.current) {
-                            bottomRef.current.scrollIntoView({ block: 'end', behavior: 'instant', inline: 'end' });
-                          }
-                        }, 1);
-                      }}
-                    />
-                    {isTyping && <span className="cursor"></span>}
-                    {!isTyping && (
-                      <div className="prompt">
-                        <span>&gt; {content}</span>
-                        <div className="cursor-wrapper">
-                          <input disabled={isTyping} className="prompt-input" value={content} onChange={e => setContent(e.target.value)} />
-                          <span className="cursor"></span>
+                  !monitorClass && (
+                    <>
+                      <Typewriter
+                        typingDelay={30}
+                        texts={writing}
+                        onTypingStart={() => setIsTyping(true)}
+                        onTypingEnd={() => setIsTyping(false)}
+                        onLetterTyped={() => {
+                          setTimeout(() => {
+                            if (bottomRef.current) {
+                              bottomRef.current.scrollIntoView({ block: 'end', behavior: 'instant', inline: 'end' });
+                            }
+                          }, 1);
+                        }}
+                      />
+                      {isTyping && <span className="cursor"></span>}
+                      {!isTyping && (
+                        <div className="prompt">
+                          <span>&gt; {content}</span>
+                          <div className="cursor-wrapper">
+                            <input disabled={isTyping} className="prompt-input" value={content} onChange={e => setContent(e.target.value)} />
+                            <span className="cursor"></span>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </>
+                      )}
+                    </>
+                  )
                 )}
                 <div ref={bottomRef}></div>
               </div>
